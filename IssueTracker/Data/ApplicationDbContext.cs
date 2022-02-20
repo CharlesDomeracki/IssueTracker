@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using IssueTracker.Models;
 
 namespace IssueTracker.Data
 {
@@ -12,5 +13,6 @@ namespace IssueTracker.Data
             : base(options)
         {
         }
+        public DbSet<IssueTracker.Models.Issues> Issues { get; set; }
     }
 }
