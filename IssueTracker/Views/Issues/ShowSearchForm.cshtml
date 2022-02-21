@@ -1,0 +1,42 @@
+﻿<h4>Search for Issues</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ShowSearchResults">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="SearchJiraStory" class="control-label"></label>
+                <input name="SearchJiraStory" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="SearchDescription" class="control-label"></label>
+                <input name="SearchDescription" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="SearchWikiLink" class="control-label"></label>
+                <input name="SearchWikiLink" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="SearchVideoLink" class="control-label"></label>
+                <input name="SearchVideoLink" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="SearchTechNowLink" class="control-label"></label>
+                <input name ="SearchTechNowLink" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="SearchNotes" class="control-label"></label>
+                <input name="SearchNotes" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+

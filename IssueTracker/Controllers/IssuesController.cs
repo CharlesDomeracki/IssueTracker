@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using IssueTracker.Data;
 using IssueTracker.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IssueTracker.Controllers
 {
@@ -25,6 +26,16 @@ namespace IssueTracker.Controllers
             return View(await _context.Issues.ToListAsync());
         }
 
+        // GET: Issues/ShowSearchForm
+        public async Task<IActionResult> ShowSearchForm()
+        {
+            return View();
+        }
+        // POST: Issues/ShowSearchResults
+        public async Task<IActionResult> ShowSearchResults(string SearchJiraStory)
+        {
+            return View("Index", await _context.Issues.Where( i => i.JiraStory.Contains(SearchJiraStory)).ToListAsync());
+        }
         // GET: Issues/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -44,6 +55,7 @@ namespace IssueTracker.Controllers
         }
 
         // GET: Issues/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -52,6 +64,7 @@ namespace IssueTracker.Controllers
         // POST: Issues/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,JiraStory,Description,WikiLink,VideoLink,TechNowLink,Notes")] Issues issues)
@@ -65,7 +78,9 @@ namespace IssueTracker.Controllers
             return View(issues);
         }
 
-        // GET: Issues/Edit/5
+        // GET: Issues/Edit/5'
+
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -117,6 +132,7 @@ namespace IssueTracker.Controllers
         }
 
         // GET: Issues/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,6 +151,7 @@ namespace IssueTracker.Controllers
         }
 
         // POST: Issues/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
